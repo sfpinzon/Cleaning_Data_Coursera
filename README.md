@@ -1,1 +1,2 @@
 "# Cleaning_Data_Coursera" 
+"The run_analysis.R file takes data saved on local drive from the assignment website, merges train and test data, labels it, and creates a separate data set with the means by activity of all variables related to measurement means and standard deviation."

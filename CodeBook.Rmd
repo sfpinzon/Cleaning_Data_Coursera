@@ -1,0 +1,27 @@
+---
+title: "Code_Book"
+author: "SFP"
+date: "7/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+The run_analysis.R file takes data saved on local drive from the assignment website, merges train and test data, labels it, and creates a separate data set with the means by activity of all variables related to measurement means and standard deviation.
+
+To do so, I column bound the X and Y sets for both train and test data, the row bound the resulting two datasets into one. Having downloaded the features list, I replaced the column names with the feature names. Then I used grep() to extract mean and standard deviation measure. Then I merged the data set with the activity labels so I could then replace the numbers of the activities with their respective labels. After, I used group_by() and summarise_all() to calculate mean of each column by activity.  
+```{r}
+setwd("~/R/Coursera/Cleaning data/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset")
+features<-read.table('features.txt', header = FALSE)
+meancols<-grep("mean()",features$V2)
+stdcols<-grep("std()",features$V2)
+#Join indices into one object
+datacols<-c(meancols,stdcols)
+variables<-features[datacols]
+print(variables)
+```
+The variables above correspond to each of the mean and standard deviation measures from the device and their corresponding mean by activity. 
